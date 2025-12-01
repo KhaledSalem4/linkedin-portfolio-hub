@@ -5,22 +5,32 @@ import { Card } from "@/components/ui/card";
 
 const experiences = [
   {
-    title: "Senior Developer",
-    company: "Tech Company",
-    period: "2022 - Present",
-    description: "Leading development of innovative web applications using modern frameworks and best practices. Mentoring junior developers and driving technical decisions.",
-  },
-  {
-    title: "Full Stack Developer",
-    company: "Digital Agency",
-    period: "2020 - 2022",
-    description: "Built and maintained client websites and applications. Collaborated with designers and stakeholders to deliver high-quality digital solutions.",
+    title: ".NET Full Stack Developer - Intensive Training",
+    company: "Information Technology Institute (ITI)",
+    location: "Port Said Branch",
+    period: "July 2025 - Nov 2025",
+    description: "Completed intensive training program focused on full-stack .NET development. Developed and deployed web applications using ASP.NET Core and Angular frameworks. Collaborated within a team environment following Agile methodology. Gained hands-on experience in SQL Server, Entity Framework, and RESTful API development.",
   },
   {
     title: "Frontend Developer",
-    company: "Startup Inc",
-    period: "2019 - 2020",
-    description: "Developed responsive user interfaces and improved application performance. Implemented modern design systems and component libraries.",
+    company: "BrightMind - E-Learning Platform",
+    location: "External Freelance / ITI",
+    period: "July 2025 - Nov 2025",
+    description: "Designed and developed a responsive web-based learning platform for interactive educational content. Built all UI components from scratch using pure HTML, CSS, and JavaScript without frameworks, demonstrating strong fundamentals in frontend development.",
+  },
+  {
+    title: "Backend Developer - Graduation Project",
+    company: "Suez Canal University",
+    location: "Online Library System",
+    period: "May 2024",
+    description: "Developed and maintained RESTful APIs for managing books, users, and borrowing operations using Node.js and Express. Implemented secure user authentication and role-based access control. Integrated MongoDB for efficient data storage and retrieval.",
+  },
+  {
+    title: "Java & OOP Training",
+    company: "Information Technology Institute (ITI)",
+    location: "Ismailia, Egypt",
+    period: "Summer 2022",
+    description: "Completed summer training program focused on Java programming, Object-Oriented Programming (OOP) principles, and multithreading concepts. Built solid foundation in core programming concepts and best practices.",
   },
 ];
 
@@ -38,10 +48,10 @@ const Experience = () => {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-foreground mb-16 text-center">
-            Experience
+            Experience & Training
           </h2>
 
-          <div className="max-w-3xl mx-auto space-y-8">
+          <div className="max-w-4xl mx-auto space-y-8">
             {experiences.map((exp, index) => (
               <motion.div
                 key={index}
@@ -56,8 +66,9 @@ const Experience = () => {
                         {exp.title}
                       </h3>
                       <p className="text-lg text-secondary font-medium">{exp.company}</p>
+                      <p className="text-sm text-muted-foreground mt-1">{exp.location}</p>
                     </div>
-                    <span className="text-sm text-muted-foreground mt-2 md:mt-0 bg-muted px-3 py-1 rounded-full">
+                    <span className="text-sm text-muted-foreground mt-2 md:mt-0 bg-muted px-3 py-1 rounded-full whitespace-nowrap">
                       {exp.period}
                     </span>
                   </div>

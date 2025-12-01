@@ -21,10 +21,10 @@ const Hero = () => {
             className="space-y-4"
           >
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-display font-bold text-primary-foreground tracking-tight">
-              Your Name
+              Khaled Ahmed Salem
             </h1>
             <p className="text-2xl md:text-3xl text-primary-foreground/90 font-light">
-              Creative Developer & Designer
+              Full Stack .NET Developer
             </p>
           </motion.div>
 
@@ -34,8 +34,8 @@ const Hero = () => {
             transition={{ delay: 0.4, duration: 0.6 }}
             className="text-lg md:text-xl text-primary-foreground/80 max-w-2xl mx-auto leading-relaxed"
           >
-            Crafting elegant digital experiences through innovative design and clean code.
-            Passionate about creating intuitive interfaces that users love.
+            Specialized in building robust web applications using C#, ASP.NET Core, and Angular.
+            Passionate about modern web technologies, clean architecture, and delivering high-quality solutions.
           </motion.p>
 
           <motion.div
@@ -61,7 +61,7 @@ const Hero = () => {
                 className="bg-primary-foreground/10 border-primary-foreground/20 hover:bg-primary-foreground/20 text-primary-foreground"
                 asChild
               >
-                <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+                <a href="https://github.com/KhaledSalem4" target="_blank" rel="noopener noreferrer">
                   <Github className="h-5 w-5" />
                 </a>
               </Button>
@@ -71,7 +71,7 @@ const Hero = () => {
                 className="bg-primary-foreground/10 border-primary-foreground/20 hover:bg-primary-foreground/20 text-primary-foreground"
                 asChild
               >
-                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+                <a href="https://linkedin.com/in/khaled-salem-121a94260" target="_blank" rel="noopener noreferrer">
                   <Linkedin className="h-5 w-5" />
                 </a>
               </Button>

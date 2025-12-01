@@ -1,33 +1,39 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { Mail, Linkedin, Github, Twitter } from "lucide-react";
+import { Mail, Linkedin, Github, MapPin, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const contactLinks = [
   {
     icon: Mail,
     label: "Email",
-    value: "your.email@example.com",
-    href: "mailto:your.email@example.com",
+    value: "khaledas418@gmail.com",
+    href: "mailto:khaledas418@gmail.com",
+  },
+  {
+    icon: Phone,
+    label: "Phone",
+    value: "+20 1285516705",
+    href: "tel:+201285516705",
   },
   {
     icon: Linkedin,
     label: "LinkedIn",
-    value: "linkedin.com/in/yourprofile",
-    href: "https://linkedin.com/in/yourprofile",
+    value: "Khaled Salem",
+    href: "https://linkedin.com/in/khaled-salem-121a94260",
   },
   {
     icon: Github,
     label: "GitHub",
-    value: "github.com/yourusername",
-    href: "https://github.com/yourusername",
+    value: "KhaledSalem4",
+    href: "https://github.com/KhaledSalem4",
   },
   {
-    icon: Twitter,
-    label: "Twitter",
-    value: "@yourusername",
-    href: "https://twitter.com/yourusername",
+    icon: MapPin,
+    label: "Location",
+    value: "Madinet Nasr, Cairo, Egypt",
+    href: "#",
   },
 ];
 
@@ -52,10 +58,11 @@ const Contact = () => {
           </h2>
           
           <p className="text-lg md:text-xl text-primary-foreground/80 mb-12 max-w-2xl mx-auto">
-            I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
+            I'm actively seeking opportunities to contribute to innovative projects and grow as a Full Stack .NET Developer. 
+            Let's discuss how I can add value to your team!
           </p>
 
-          <div className="grid sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
+          <div className="grid sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
             {contactLinks.map((link, index) => (
               <motion.div
                 key={index}
@@ -66,20 +73,30 @@ const Contact = () => {
                 <Button
                   variant="outline"
                   className="w-full h-auto p-6 bg-primary-foreground/10 border-primary-foreground/20 hover:bg-primary-foreground/20 text-primary-foreground hover:text-primary-foreground group"
-                  asChild
+                  asChild={link.href !== "#"}
                 >
-                  <a
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex flex-col items-start space-y-2"
-                  >
-                    <link.icon className="h-6 w-6 group-hover:scale-110 transition-transform" />
-                    <div className="text-left">
-                      <div className="text-sm text-primary-foreground/60">{link.label}</div>
-                      <div className="font-medium">{link.value}</div>
+                  {link.href !== "#" ? (
+                    <a
+                      href={link.href}
+                      target={link.href.startsWith("http") ? "_blank" : undefined}
+                      rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                      className="flex flex-col items-start space-y-2 w-full"
+                    >
+                      <link.icon className="h-6 w-6 group-hover:scale-110 transition-transform" />
+                      <div className="text-left">
+                        <div className="text-sm text-primary-foreground/60">{link.label}</div>
+                        <div className="font-medium text-sm md:text-base">{link.value}</div>
+                      </div>
+                    </a>
+                  ) : (
+                    <div className="flex flex-col items-start space-y-2 w-full">
+                      <link.icon className="h-6 w-6" />
+                      <div className="text-left">
+                        <div className="text-sm text-primary-foreground/60">{link.label}</div>
+                        <div className="font-medium text-sm md:text-base">{link.value}</div>
+                      </div>
                     </div>
-                  </a>
+                  )}
                 </Button>
               </motion.div>
             ))}
@@ -89,9 +106,14 @@ const Contact = () => {
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : { opacity: 0 }}
             transition={{ delay: 0.6, duration: 0.6 }}
-            className="mt-12 text-primary-foreground/60 text-sm"
+            className="mt-16 space-y-4"
           >
-            <p>© 2024 Your Name. All rights reserved.</p>
+            <div className="inline-block bg-primary-foreground/10 px-4 py-2 rounded-full text-primary-foreground/80 text-sm">
+              Military Status: Exempted
+            </div>
+            <p className="text-primary-foreground/60 text-sm">
+              © 2024 Khaled Ahmed Salem. All rights reserved.
+            </p>
           </motion.div>
         </motion.div>
       </div>

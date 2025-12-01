@@ -4,31 +4,39 @@ import { useRef } from "react";
 import { Card } from "@/components/ui/card";
 import { ExternalLink, Github } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import brightmindImage from "@/assets/brightmind-project.jpg";
+import libraryImage from "@/assets/library-project.jpg";
+import dotnetImage from "@/assets/dotnet-project.jpg";
+import competitiveImage from "@/assets/competitive-programming.jpg";
 
 const projects = [
   {
-    title: "E-Commerce Platform",
-    description: "Full-featured online shopping platform with payment integration, inventory management, and admin dashboard.",
-    tags: ["React", "Node.js", "MongoDB", "Stripe"],
-    image: "https://images.unsplash.com/photo-1557821552-17105176677c?w=800&h=500&fit=crop",
+    title: "BrightMind - E-Learning Platform",
+    description: "Responsive web-based learning platform for interactive educational content. Built all UI components from scratch using pure HTML, CSS, and JavaScript, showcasing strong frontend fundamentals without relying on frameworks.",
+    tags: ["HTML5", "CSS3", "JavaScript", "Responsive Design", "UI/UX"],
+    image: brightmindImage,
+    type: "Frontend Development",
   },
   {
-    title: "Task Management App",
-    description: "Collaborative task management tool with real-time updates, team collaboration features, and analytics.",
-    tags: ["TypeScript", "Next.js", "PostgreSQL", "WebSocket"],
-    image: "https://images.unsplash.com/photo-1540350394557-8d14678e7f91?w=800&h=500&fit=crop",
+    title: "Online Library System",
+    description: "Full-featured library management system with RESTful APIs for managing books, users, and borrowing operations. Implemented secure authentication, role-based access control, and efficient data operations with MongoDB.",
+    tags: ["Node.js", "Express.js", "MongoDB", "REST API", "JWT Auth"],
+    image: libraryImage,
+    type: "Backend Development",
   },
   {
-    title: "Portfolio Website",
-    description: "Modern portfolio showcase with stunning animations, smooth transitions, and responsive design.",
-    tags: ["React", "Tailwind", "Framer Motion"],
-    image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&h=500&fit=crop",
+    title: "ASP.NET Core Applications",
+    description: "Enterprise-level web applications built during ITI intensive training. Developed using ASP.NET Core MVC, Entity Framework, and Angular, following Agile methodology and best practices in software architecture.",
+    tags: ["ASP.NET Core", "C#", "Entity Framework", "Angular", "SQL Server"],
+    image: dotnetImage,
+    type: "Full Stack Development",
   },
   {
-    title: "Weather Dashboard",
-    description: "Real-time weather data visualization with location-based forecasts and interactive maps.",
-    tags: ["Vue.js", "API Integration", "Chart.js"],
-    image: "https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?w=800&h=500&fit=crop",
+    title: "Competitive Programming",
+    description: "Achieved Honorable Mention in ICPC ECPC Qualifications. Solved 200+ algorithmic problems on Codeforces and LeetCode using C++, demonstrating strong problem-solving skills and algorithmic thinking.",
+    tags: ["C++", "Algorithms", "Data Structures", "Problem Solving"],
+    image: competitiveImage,
+    type: "Competitive Programming",
   },
 ];
 
@@ -64,7 +72,9 @@ const Projects = () => {
                       alt={project.title}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-start p-4">
+                      <span className="text-white text-sm font-medium">{project.type}</span>
+                    </div>
                   </div>
                   
                   <div className="p-6 flex-1 flex flex-col">
@@ -79,7 +89,7 @@ const Projects = () => {
                       {project.tags.map((tag, tagIndex) => (
                         <span
                           key={tagIndex}
-                          className="text-xs px-3 py-1 bg-secondary/10 text-secondary rounded-full"
+                          className="text-xs px-3 py-1 bg-secondary/10 text-secondary rounded-full font-medium"
                         >
                           {tag}
                         </span>
@@ -87,13 +97,16 @@ const Projects = () => {
                     </div>
 
                     <div className="flex gap-3">
-                      <Button variant="outline" size="sm" className="group/btn">
-                        <Github className="h-4 w-4 mr-2" />
-                        Code
-                      </Button>
-                      <Button variant="outline" size="sm" className="group/btn">
-                        <ExternalLink className="h-4 w-4 mr-2" />
-                        Demo
+                      <Button 
+                        variant="outline" 
+                        size="sm" 
+                        className="group/btn"
+                        asChild
+                      >
+                        <a href="https://github.com/KhaledSalem4" target="_blank" rel="noopener noreferrer">
+                          <Github className="h-4 w-4 mr-2" />
+                          View Code
+                        </a>
                       </Button>
                     </div>
                   </div>

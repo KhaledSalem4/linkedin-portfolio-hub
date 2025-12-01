@@ -22,20 +22,23 @@ const About = () => {
           
           <div className="space-y-6 text-lg md:text-xl text-muted-foreground leading-relaxed">
             <p>
-              I'm a passionate developer and designer with a keen eye for detail and a love for creating
-              seamless digital experiences. With expertise in modern web technologies and a commitment to
-              clean, maintainable code, I bring ideas to life through elegant solutions.
+              I'm a motivated Full Stack .NET Developer with hands-on experience in building robust web applications 
+              using C#, ASP.NET Core, and SQL Server. I graduated with a Very Good grade from Suez Canal University's 
+              Faculty of Computer and Information Sciences, where I developed a strong foundation in software engineering 
+              principles and modern development practices.
             </p>
             
             <p>
-              My approach combines technical proficiency with creative thinking, ensuring that every project
-              not only functions flawlessly but also delivers an exceptional user experience. I believe in
-              continuous learning and staying current with industry trends to provide cutting-edge solutions.
+              My technical expertise spans the full development stack - from crafting responsive frontends with Angular 
+              and JavaScript to building secure RESTful APIs with ASP.NET Core and Entity Framework. I'm passionate about 
+              writing clean, maintainable code following SOLID principles and design patterns, always striving to deliver 
+              high-quality solutions that meet real-world needs.
             </p>
             
             <p>
-              When I'm not coding, you'll find me exploring new design trends, contributing to open-source
-              projects, or sharing knowledge with the developer community.
+              Through intensive training at ITI and working on diverse projects, I've gained practical experience in Agile 
+              methodologies, team collaboration, and modern development tools. I'm also an active competitive programmer 
+              with 200+ problems solved on Codeforces and LeetCode, constantly sharpening my problem-solving skills.
             </p>
           </div>
 
@@ -46,10 +49,10 @@ const About = () => {
             className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-8"
           >
             {[
-              { number: "5+", label: "Years Experience" },
-              { number: "50+", label: "Projects Completed" },
-              { number: "30+", label: "Happy Clients" },
-              { number: "15+", label: "Technologies" },
+              { number: "2024", label: "Graduate" },
+              { number: "200+", label: "Problems Solved" },
+              { number: "10+", label: "Projects Built" },
+              { number: "12+", label: "Technologies" },
             ].map((stat, index) => (
               <div key={index} className="text-center space-y-2">
                 <div className="text-3xl md:text-4xl font-display font-bold text-secondary">

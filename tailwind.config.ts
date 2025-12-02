@@ -17,6 +17,14 @@ export default {
         display: ['Playfair Display', 'serif'],
         sans: ['Inter', 'sans-serif'],
       },
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+      },
+      boxShadow: {
+        'glow': 'var(--shadow-glow)',
+        'glow-lg': '0 0 80px -10px hsl(var(--primary) / 0.6)',
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

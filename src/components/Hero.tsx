@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
+import profileImage from "@/assets/khaled-profile.jpg";
 
 const Hero = () => {
   return (
@@ -15,9 +16,30 @@ const Hero = () => {
           className="max-w-4xl mx-auto text-center space-y-8"
         >
           <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.1, duration: 0.8, type: "spring" }}
+            className="flex justify-center mb-8"
+          >
+            <div className="relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary via-accent to-secondary rounded-full blur-2xl opacity-60 animate-pulse" />
+              <div className="relative w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden border-4 border-primary-foreground/20 shadow-glow-lg">
+                <img 
+                  src={profileImage} 
+                  alt="Khaled Ahmed Salem" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="absolute -bottom-2 -right-2 w-16 h-16 bg-accent rounded-full border-4 border-background flex items-center justify-center shadow-glow">
+                <span className="text-2xl">👨‍💻</span>
+              </div>
+            </div>
+          </motion.div>
+
+          <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
+            transition={{ delay: 0.3, duration: 0.6 }}
             className="space-y-4"
           >
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-display font-bold text-primary-foreground tracking-tight">

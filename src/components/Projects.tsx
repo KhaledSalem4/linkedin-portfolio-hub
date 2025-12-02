@@ -45,19 +45,19 @@ const Projects = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="projects" className="py-24 md:py-32 bg-background">
-      <div className="container px-4 md:px-6">
+    <section id="projects" className="py-16 sm:py-20 md:py-24 lg:py-32 bg-background">
+      <div className="container px-4 sm:px-6 lg:px-8">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-foreground mb-16 text-center">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold text-foreground mb-10 sm:mb-12 md:mb-16 text-center">
             Featured Projects
           </h2>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+          <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 max-w-6xl mx-auto">
             {projects.map((project, index) => (
               <motion.div
                 key={index}
@@ -72,16 +72,16 @@ const Projects = () => {
                       alt={project.title}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-start p-4">
-                      <span className="text-white text-sm font-medium">{project.type}</span>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-start p-3 sm:p-4">
+                      <span className="text-white text-xs sm:text-sm font-medium">{project.type}</span>
                     </div>
                   </div>
                   
-                  <div className="p-6 flex-1 flex flex-col">
-                    <h3 className="text-2xl font-display font-bold text-foreground mb-3">
+                  <div className="p-4 sm:p-6 flex-1 flex flex-col">
+                    <h3 className="text-xl sm:text-2xl font-display font-bold text-foreground mb-2 sm:mb-3">
                       {project.title}
                     </h3>
-                    <p className="text-muted-foreground mb-4 flex-1">
+                    <p className="text-sm sm:text-base text-muted-foreground mb-3 sm:mb-4 flex-1">
                       {project.description}
                     </p>
                     

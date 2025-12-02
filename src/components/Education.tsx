@@ -27,15 +27,15 @@ const Education = () => {
   ];
 
   return (
-    <section id="education" className="py-24 md:py-32 bg-background">
-      <div className="container px-4 md:px-6">
+    <section id="education" className="py-16 sm:py-20 md:py-24 lg:py-32 bg-background">
+      <div className="container px-4 sm:px-6 lg:px-8">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-foreground mb-16 text-center">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold text-foreground mb-10 sm:mb-12 md:mb-16 text-center">
             Education & Achievements
           </h2>
 
@@ -46,29 +46,29 @@ const Education = () => {
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ delay: 0.2, duration: 0.6 }}
             >
-              <Card className="p-8 border-l-4 border-l-secondary hover:shadow-xl transition-shadow duration-300">
-                <div className="flex items-start gap-6">
-                  <div className="bg-secondary/10 p-4 rounded-full">
-                    <GraduationCap className="h-8 w-8 text-secondary" />
+              <Card className="p-4 sm:p-6 md:p-8 border-l-4 border-l-secondary hover:shadow-xl transition-shadow duration-300">
+                <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
+                  <div className="bg-secondary/10 p-3 sm:p-4 rounded-full">
+                    <GraduationCap className="h-6 w-6 sm:h-8 sm:w-8 text-secondary" />
                   </div>
-                  <div className="flex-1">
-                    <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
-                      <div>
-                        <h3 className="text-2xl md:text-3xl font-display font-bold text-foreground mb-2">
+                  <div className="flex-1 w-full">
+                    <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-4 gap-3">
+                      <div className="flex-1">
+                        <h3 className="text-xl sm:text-2xl md:text-3xl font-display font-bold text-foreground mb-2">
                           Bachelor of Computer and Information Sciences
                         </h3>
-                        <p className="text-lg text-secondary font-medium">
+                        <p className="text-base sm:text-lg text-secondary font-medium">
                           Suez Canal University
                         </p>
                         <p className="text-sm text-muted-foreground mt-1">
                           Ismailia, Egypt
                         </p>
                       </div>
-                      <div className="mt-2 md:mt-0 text-right">
-                        <span className="inline-block bg-accent/10 text-accent px-4 py-2 rounded-full font-medium">
+                      <div className="mt-2 lg:mt-0 flex flex-col items-start lg:items-end gap-2">
+                        <span className="inline-block bg-accent/10 text-accent px-3 sm:px-4 py-1.5 sm:py-2 rounded-full font-medium text-sm sm:text-base">
                           Grade: Very Good
                         </span>
-                        <p className="text-sm text-muted-foreground mt-2">
+                        <p className="text-xs sm:text-sm text-muted-foreground">
                           Aug 2019 - May 2024
                         </p>
                       </div>
@@ -104,7 +104,7 @@ const Education = () => {
             </motion.div>
 
             {/* Certifications */}
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
               {certifications.map((cert, index) => (
                 <motion.div
                   key={index}
@@ -112,13 +112,13 @@ const Education = () => {
                   animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                   transition={{ delay: 0.4 + index * 0.2, duration: 0.6 }}
                 >
-                  <Card className="p-6 h-full hover:shadow-lg transition-shadow duration-300 border-t-4 border-t-accent">
-                    <div className="flex items-start gap-4">
-                      <div className="bg-accent/10 p-3 rounded-full">
-                        <cert.icon className="h-6 w-6 text-accent" />
+                  <Card className="p-4 sm:p-6 h-full hover:shadow-lg transition-shadow duration-300 border-t-4 border-t-accent">
+                    <div className="flex items-start gap-3 sm:gap-4">
+                      <div className="bg-accent/10 p-2 sm:p-3 rounded-full flex-shrink-0">
+                        <cert.icon className="h-5 w-5 sm:h-6 sm:w-6 text-accent" />
                       </div>
-                      <div className="flex-1">
-                        <h3 className="text-lg font-display font-bold text-foreground mb-2">
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-base sm:text-lg font-display font-bold text-foreground mb-2">
                           {cert.title}
                         </h3>
                         <p className="text-secondary font-medium text-sm mb-1">

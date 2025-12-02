@@ -80,22 +80,22 @@ const Skills = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="skills" className="py-24 md:py-32 bg-muted/30">
-      <div className="container px-4 md:px-6">
+    <section id="skills" className="py-16 sm:py-20 md:py-24 lg:py-32 bg-muted/30">
+      <div className="container px-4 sm:px-6 lg:px-8">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-foreground mb-4 text-center">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold text-foreground mb-3 sm:mb-4 text-center">
             Technical Skills
           </h2>
-          <p className="text-lg text-muted-foreground text-center mb-16 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-muted-foreground text-center mb-10 sm:mb-12 md:mb-16 max-w-2xl mx-auto px-4">
             Comprehensive skill set spanning full-stack development, competitive programming, and modern software engineering practices
           </p>
 
-          <div className="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="max-w-6xl mx-auto grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {skillCategories.map((category, categoryIndex) => (
               <motion.div
                 key={categoryIndex}
@@ -103,11 +103,11 @@ const Skills = () => {
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ delay: categoryIndex * 0.1, duration: 0.6 }}
               >
-                <Card className="p-6 h-full hover:shadow-lg transition-shadow duration-300 border-t-4 border-t-secondary">
-                  <h3 className="text-xl font-display font-bold text-foreground mb-6">
+                <Card className="p-4 sm:p-6 h-full hover:shadow-lg transition-shadow duration-300 border-t-4 border-t-secondary">
+                  <h3 className="text-lg sm:text-xl font-display font-bold text-foreground mb-4 sm:mb-6">
                     {category.title}
                   </h3>
-                  <div className="space-y-3">
+                  <div className="space-y-2 sm:space-y-3">
                     {category.skills.map((skill, skillIndex) => (
                       <motion.div
                         key={skillIndex}
@@ -136,20 +136,20 @@ const Skills = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ delay: 0.6, duration: 0.6 }}
-            className="mt-12 text-center"
+            className="mt-8 sm:mt-10 md:mt-12 text-center"
           >
-            <Card className="inline-block p-6 bg-gradient-to-r from-secondary/10 to-accent/10">
-              <h3 className="text-lg font-display font-bold text-foreground mb-3">
+            <Card className="inline-block p-4 sm:p-6 bg-gradient-to-r from-secondary/10 to-accent/10 mx-4">
+              <h3 className="text-base sm:text-lg font-display font-bold text-foreground mb-3">
                 Languages
               </h3>
-              <div className="flex gap-8">
-                <div>
-                  <span className="text-secondary font-medium">Arabic</span>
-                  <span className="text-muted-foreground text-sm block">Native</span>
+              <div className="flex flex-col sm:flex-row gap-4 sm:gap-8">
+                <div className="text-center sm:text-left">
+                  <span className="text-secondary font-medium text-sm sm:text-base">Arabic</span>
+                  <span className="text-muted-foreground text-xs sm:text-sm block">Native</span>
                 </div>
-                <div>
-                  <span className="text-secondary font-medium">English</span>
-                  <span className="text-muted-foreground text-sm block">Intermediate</span>
+                <div className="text-center sm:text-left">
+                  <span className="text-secondary font-medium text-sm sm:text-base">English</span>
+                  <span className="text-muted-foreground text-xs sm:text-sm block">Intermediate</span>
                 </div>
               </div>
             </Card>

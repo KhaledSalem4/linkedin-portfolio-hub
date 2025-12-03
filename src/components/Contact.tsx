@@ -1,120 +1,235 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef } from "react";
-import { Mail, Linkedin, Github, MapPin, Phone } from "lucide-react";
+import { useRef, useState } from "react";
+import { Mail, Linkedin, Github, MapPin, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { useToast } from "@/hooks/use-toast";
+import { z } from "zod";
 
-const contactLinks = [
+const contactSchema = z.object({
+  name: z.string().trim().min(1, "Name is required").max(100, "Name must be less than 100 characters"),
+  email: z.string().trim().email("Invalid email address").max(255, "Email must be less than 255 characters"),
+  message: z.string().trim().min(1, "Message is required").max(1000, "Message must be less than 1000 characters"),
+});
+
+const socialLinks = [
   {
-    icon: Mail,
-    label: "Email",
-    value: "khaledas418@gmail.com",
-    href: "mailto:khaledas418@gmail.com",
-  },
-  {
-    icon: Phone,
-    label: "Phone",
-    value: "+20 1285516705",
-    href: "tel:+201285516705",
+    icon: Github,
+    label: "GitHub",
+    href: "https://github.com/KhaledSalem4",
   },
   {
     icon: Linkedin,
     label: "LinkedIn",
-    value: "Khaled Salem",
     href: "https://linkedin.com/in/khaled-salem-121a94260",
   },
   {
-    icon: Github,
-    label: "GitHub",
-    value: "KhaledSalem4",
-    href: "https://github.com/KhaledSalem4",
-  },
-  {
-    icon: MapPin,
-    label: "Location",
-    value: "Madinet Nasr, Cairo, Egypt",
-    href: "#",
+    icon: Mail,
+    label: "Email",
+    href: "mailto:khaledas418@gmail.com",
   },
 ];
 
 const Contact = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { toast } = useToast();
+  
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [errors, setErrors] = useState<{ name?: string; email?: string; message?: string }>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setErrors({});
+    
+    const result = contactSchema.safeParse(formData);
+    if (!result.success) {
+      const fieldErrors: typeof errors = {};
+      result.error.errors.forEach((err) => {
+        if (err.path[0]) {
+          fieldErrors[err.path[0] as keyof typeof errors] = err.message;
+        }
+      });
+      setErrors(fieldErrors);
+      return;
+    }
+
+    setIsSubmitting(true);
+    
+    // Simulate form submission
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    
+    toast({
+      title: "Message sent!",
+      description: "Thank you for reaching out. I'll get back to you soon.",
+    });
+    
+    setFormData({ name: "", email: "", message: "" });
+    setIsSubmitting(false);
+  };
 
   return (
-    <section id="contact" className="py-16 sm:py-20 md:py-24 lg:py-32 bg-gradient-to-br from-primary via-primary/95 to-secondary/20 relative overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,rgba(195,228,237,0.1),transparent_50%)]" />
-      
-      <div className="container px-4 sm:px-6 lg:px-8 relative z-10">
+    <section id="contact" className="py-20 md:py-32 bg-background">
+      <div className="container px-4 sm:px-6 lg:px-8">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.6 }}
-          className="max-w-4xl mx-auto text-center"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold text-primary-foreground mb-6 sm:mb-8">
-            Let's Connect
-          </h2>
-          
-          <p className="text-base sm:text-lg md:text-xl text-primary-foreground/80 mb-8 sm:mb-10 md:mb-12 max-w-2xl mx-auto px-4">
-            I'm actively seeking opportunities to contribute to innovative projects and grow as a Full Stack .NET Developer. 
-            Let's discuss how I can add value to your team!
-          </p>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4">
+              Get in Touch
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              I'm actively seeking opportunities. Let's discuss how I can contribute to your team!
+            </p>
+          </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 max-w-3xl mx-auto">
-            {contactLinks.map((link, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                transition={{ delay: index * 0.1, duration: 0.5 }}
-              >
+          <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-12">
+            {/* Contact Form */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+              transition={{ delay: 0.2, duration: 0.5 }}
+            >
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div>
+                  <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
+                    Name
+                  </label>
+                  <Input
+                    id="name"
+                    type="text"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    placeholder="Your name"
+                    className={errors.name ? "border-destructive" : ""}
+                    aria-invalid={!!errors.name}
+                    aria-describedby={errors.name ? "name-error" : undefined}
+                  />
+                  {errors.name && (
+                    <p id="name-error" className="text-sm text-destructive mt-1">{errors.name}</p>
+                  )}
+                </div>
+                
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
+                    Email
+                  </label>
+                  <Input
+                    id="email"
+                    type="email"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    placeholder="your@email.com"
+                    className={errors.email ? "border-destructive" : ""}
+                    aria-invalid={!!errors.email}
+                    aria-describedby={errors.email ? "email-error" : undefined}
+                  />
+                  {errors.email && (
+                    <p id="email-error" className="text-sm text-destructive mt-1">{errors.email}</p>
+                  )}
+                </div>
+                
+                <div>
+                  <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
+                    Message
+                  </label>
+                  <Textarea
+                    id="message"
+                    value={formData.message}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    placeholder="Your message..."
+                    rows={5}
+                    className={errors.message ? "border-destructive" : ""}
+                    aria-invalid={!!errors.message}
+                    aria-describedby={errors.message ? "message-error" : undefined}
+                  />
+                  {errors.message && (
+                    <p id="message-error" className="text-sm text-destructive mt-1">{errors.message}</p>
+                  )}
+                </div>
+                
                 <Button
-                  variant="outline"
-                  className="w-full h-auto p-4 sm:p-5 md:p-6 bg-primary-foreground/10 border-primary-foreground/20 hover:bg-primary-foreground/20 text-primary-foreground hover:text-primary-foreground group touch-manipulation"
-                  asChild={link.href !== "#"}
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
                 >
-                  {link.href !== "#" ? (
+                  {isSubmitting ? (
+                    "Sending..."
+                  ) : (
+                    <>
+                      Send Message
+                      <Send className="ml-2 h-4 w-4" />
+                    </>
+                  )}
+                </Button>
+              </form>
+            </motion.div>
+
+            {/* Contact Info */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
+              transition={{ delay: 0.3, duration: 0.5 }}
+              className="space-y-8"
+            >
+              <div>
+                <h3 className="text-lg font-bold text-foreground mb-4">Contact Information</h3>
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 bg-primary/10 rounded-lg">
+                      <Mail className="h-5 w-5 text-primary" />
+                    </div>
+                    <div>
+                      <p className="text-sm text-muted-foreground">Email</p>
+                      <a href="mailto:khaledas418@gmail.com" className="text-foreground hover:text-primary transition-colors">
+                        khaledas418@gmail.com
+                      </a>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 bg-primary/10 rounded-lg">
+                      <MapPin className="h-5 w-5 text-primary" />
+                    </div>
+                    <div>
+                      <p className="text-sm text-muted-foreground">Location</p>
+                      <p className="text-foreground">Cairo, Egypt</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-lg font-bold text-foreground mb-4">Connect</h3>
+                <div className="flex gap-3">
+                  {socialLinks.map((link, index) => (
                     <a
+                      key={index}
                       href={link.href}
                       target={link.href.startsWith("http") ? "_blank" : undefined}
                       rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                      className="flex flex-col items-start space-y-2 w-full"
+                      className="p-3 bg-muted hover:bg-primary/10 rounded-lg text-muted-foreground hover:text-primary transition-colors"
+                      aria-label={link.label}
                     >
-                      <link.icon className="h-5 w-5 sm:h-6 sm:w-6 group-hover:scale-110 transition-transform" />
-                      <div className="text-left">
-                        <div className="text-xs sm:text-sm text-primary-foreground/60">{link.label}</div>
-                        <div className="font-medium text-sm sm:text-base break-all">{link.value}</div>
-                      </div>
+                      <link.icon className="h-5 w-5" />
                     </a>
-                  ) : (
-                    <div className="flex flex-col items-start space-y-2 w-full">
-                      <link.icon className="h-5 w-5 sm:h-6 sm:w-6" />
-                      <div className="text-left">
-                        <div className="text-xs sm:text-sm text-primary-foreground/60">{link.label}</div>
-                        <div className="font-medium text-sm sm:text-base break-all">{link.value}</div>
-                      </div>
-                    </div>
-                  )}
-                </Button>
-              </motion.div>
-            ))}
-          </div>
+                  ))}
+                </div>
+              </div>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ delay: 0.6, duration: 0.6 }}
-            className="mt-10 sm:mt-12 md:mt-16 space-y-3 sm:space-y-4"
-          >
-            <div className="inline-block bg-primary-foreground/10 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-primary-foreground/80 text-xs sm:text-sm">
-              Military Status: Exempted
-            </div>
-            <p className="text-primary-foreground/60 text-xs sm:text-sm">
-              © 2024 Khaled Ahmed Salem. All rights reserved.
-            </p>
-          </motion.div>
+              <div className="p-4 bg-muted/50 rounded-lg">
+                <p className="text-sm text-muted-foreground">
+                  <span className="font-medium text-foreground">Military Status:</span> Exempted
+                </p>
+              </div>
+            </motion.div>
+          </div>
         </motion.div>
       </div>
     </section>

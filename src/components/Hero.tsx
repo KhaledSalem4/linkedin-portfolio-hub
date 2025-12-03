@@ -19,21 +19,60 @@ const Hero = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.1, duration: 0.8, type: "spring" }}
-            className="flex justify-center mb-6 sm:mb-8"
+            className="flex justify-center mb-6 sm:mb-8 perspective-1000"
           >
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary via-accent to-secondary rounded-full blur-2xl opacity-60 animate-pulse" />
-              <div className="relative w-36 h-36 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 rounded-full overflow-hidden border-4 border-primary-foreground/20 shadow-glow-lg">
+            <motion.div 
+              className="relative group"
+              whileHover={{ rotateY: 15, rotateX: -10 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              style={{ transformStyle: "preserve-3d" }}
+            >
+              {/* 3D Glow layers */}
+              <div className="absolute inset-0 bg-gradient-to-br from-primary via-accent to-secondary rounded-full blur-3xl opacity-50 animate-pulse" style={{ transform: "translateZ(-60px) scale(1.3)" }} />
+              <div className="absolute inset-0 bg-gradient-to-tr from-accent via-primary to-secondary rounded-full blur-2xl opacity-40" style={{ transform: "translateZ(-40px) scale(1.2)" }} />
+              <div className="absolute inset-0 bg-gradient-to-bl from-secondary via-accent to-primary rounded-full blur-xl opacity-30" style={{ transform: "translateZ(-20px) scale(1.1)" }} />
+              
+              {/* Main photo container with 3D effect */}
+              <div 
+                className="relative w-36 h-36 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 rounded-full overflow-hidden border-4 border-primary-foreground/30 shadow-2xl group-hover:border-accent/50 transition-all duration-500"
+                style={{ 
+                  transform: "translateZ(30px)",
+                  boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 60px rgba(168, 85, 247, 0.4), inset 0 0 30px rgba(255, 255, 255, 0.1)"
+                }}
+              >
                 <img 
                   src={profileImage} 
                   alt="Khaled Ahmed Salem" 
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
+                {/* Glossy overlay for 3D effect */}
+                <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-transparent pointer-events-none" />
               </div>
-              <div className="absolute -bottom-1 -right-1 sm:-bottom-2 sm:-right-2 w-12 h-12 sm:w-16 sm:h-16 bg-accent rounded-full border-4 border-background flex items-center justify-center shadow-glow">
+              
+              {/* Floating badge with 3D */}
+              <motion.div 
+                className="absolute -bottom-1 -right-1 sm:-bottom-2 sm:-right-2 w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-accent to-primary rounded-full border-4 border-background flex items-center justify-center shadow-glow"
+                style={{ transform: "translateZ(50px)" }}
+                animate={{ y: [0, -5, 0] }}
+                transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+              >
                 <span className="text-xl sm:text-2xl">👨‍💻</span>
-              </div>
-            </div>
+              </motion.div>
+              
+              {/* Orbiting particles for extra 3D depth */}
+              <motion.div
+                className="absolute top-0 left-1/2 w-3 h-3 bg-accent rounded-full opacity-70"
+                style={{ transform: "translateZ(40px)" }}
+                animate={{ rotate: 360 }}
+                transition={{ repeat: Infinity, duration: 8, ease: "linear" }}
+              />
+              <motion.div
+                className="absolute bottom-1/4 right-0 w-2 h-2 bg-primary rounded-full opacity-60"
+                style={{ transform: "translateZ(35px)" }}
+                animate={{ rotate: -360 }}
+                transition={{ repeat: Infinity, duration: 6, ease: "linear" }}
+              />
+            </motion.div>
           </motion.div>
 
           <motion.div

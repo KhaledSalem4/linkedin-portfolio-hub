@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 
 const projects = [
   {
-    title: "EcoCollect API",
+    title: "GreenZone API",
     description: "Environmental waste collection platform with gamification. Users earn points based on the 2kg rule for recycling different materials. RESTful API with full CRUD operations.",
     tags: ["ASP.NET Core", "SQL Server", "REST API", "Entity Framework"],
     type: "Backend Development",

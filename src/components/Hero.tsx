@@ -82,9 +82,12 @@ const Hero = () => {
                 size="lg"
                 variant="outline"
                 className="border-primary text-primary hover:bg-primary/10 font-medium group"
+                asChild
               >
-                <Download className="mr-2 h-5 w-5" />
-                Download CV
+                <a href="/Khaled_Salem_CV.pdf" download="Khaled_Salem_CV.pdf">
+                  <Download className="mr-2 h-5 w-5" />
+                  Download CV
+                </a>
               </Button>
             </motion.div>
 
@@ -123,30 +126,51 @@ const Hero = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="relative order-1 lg:order-2"
           >
-            {/* Photo container */}
-            <div className="relative mx-auto w-fit">
+            {/* Photo container with 3D effect */}
+            <div className="relative mx-auto w-fit" style={{ perspective: "1000px" }}>
               {/* Glow effect */}
-              <div className="absolute inset-0 bg-primary/20 blur-3xl rounded-3xl scale-110" />
+              <div className="absolute inset-0 bg-primary/30 blur-3xl rounded-3xl scale-110" />
               
-              {/* Photo frame */}
+              {/* 3D Photo frame */}
               <motion.div
                 className="relative rounded-2xl overflow-hidden border-2 border-primary/30 shadow-2xl"
-                whileHover={{ scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 300 }}
+                initial={{ rotateY: 0, rotateX: 0 }}
+                whileHover={{ 
+                  rotateY: 10, 
+                  rotateX: -5,
+                  scale: 1.05,
+                  z: 50
+                }}
+                transition={{ type: "spring", stiffness: 200, damping: 20 }}
+                style={{ 
+                  transformStyle: "preserve-3d",
+                  boxShadow: "0 25px 50px -12px rgba(139, 0, 0, 0.4), 0 0 40px rgba(139, 0, 0, 0.2)"
+                }}
               >
                 <img
                   src={profileImage}
                   alt="Khaled Ahmed Salem - Full Stack Developer"
                   className="w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 object-cover"
                   loading="eager"
+                  style={{ transform: "translateZ(20px)" }}
                 />
                 {/* Gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/20 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/30 via-transparent to-transparent" />
+                {/* Shine effect */}
+                <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
               </motion.div>
               
-              {/* Decorative elements */}
-              <div className="absolute -top-4 -right-4 w-24 h-24 border-2 border-primary/20 rounded-2xl" />
-              <div className="absolute -bottom-4 -left-4 w-32 h-32 border-2 border-primary/10 rounded-2xl" />
+              {/* Floating decorative elements */}
+              <motion.div 
+                className="absolute -top-4 -right-4 w-24 h-24 border-2 border-primary/30 rounded-2xl"
+                animate={{ y: [0, -8, 0], rotateZ: [0, 2, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              />
+              <motion.div 
+                className="absolute -bottom-4 -left-4 w-32 h-32 border-2 border-primary/20 rounded-2xl"
+                animate={{ y: [0, 8, 0], rotateZ: [0, -2, 0] }}
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+              />
             </div>
 
             {/* Tech icons grid */}

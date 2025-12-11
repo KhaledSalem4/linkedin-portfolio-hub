@@ -7,35 +7,27 @@ import { Button } from "@/components/ui/button";
 
 const projects = [
   {
-    title: "GreenZone API",
-    description: "Environmental waste collection platform with gamification. Users earn points based on the 2kg rule for recycling different materials. RESTful API with full CRUD operations.",
-    tags: ["ASP.NET Core", "SQL Server", "REST API", "Entity Framework"],
-    type: "Backend Development",
-    repoUrl: "https://github.com/KhaledSalem4",
-    demoUrl: null,
-  },
-  {
     title: "BrightMind - E-Learning Platform",
     description: "Responsive web-based learning platform for interactive educational content. Built all UI components from scratch without frameworks.",
     tags: ["HTML5", "CSS3", "JavaScript", "Responsive Design"],
     type: "Frontend Development",
-    repoUrl: "https://github.com/KhaledSalem4",
+    repoUrl: "https://github.com/KhaledSalem4/BrightMind-E-Learning-Platform",
     demoUrl: null,
   },
   {
-    title: "Online Library System",
-    description: "Full-featured library management system with RESTful APIs. Secure authentication, role-based access control, and efficient MongoDB operations.",
-    tags: ["Node.js", "Express.js", "MongoDB", "JWT Auth"],
-    type: "Backend Development",
-    repoUrl: "https://github.com/KhaledSalem4",
-    demoUrl: null,
-  },
-  {
-    title: "Enterprise .NET Applications",
-    description: "Enterprise-level web applications built during ITI intensive training. Following Agile methodology and best practices in software architecture.",
+    title: "Graduation Project",
+    description: "Enterprise-level web application built during ITI intensive training. Following Agile methodology and best practices in software architecture.",
     tags: ["ASP.NET Core", "Angular", "Entity Framework", "SQL Server"],
     type: "Full Stack Development",
-    repoUrl: "https://github.com/KhaledSalem4",
+    repoUrl: "https://github.com/KhaledSalem4/Graduation-Project",
+    demoUrl: null,
+  },
+  {
+    title: "GreenZone - Recycling System",
+    description: "Environmental waste collection platform with gamification. Users earn points based on the 2kg rule for recycling different materials. RESTful API with full CRUD operations.",
+    tags: ["ASP.NET Core", "SQL Server", "REST API", "Entity Framework"],
+    type: "Backend Development",
+    repoUrl: "https://github.com/KhaledSalem4/RecyclingSystem",
     demoUrl: null,
   },
 ];

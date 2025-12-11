@@ -82,12 +82,9 @@ const Footer = () => {
           </div>
 
           {/* Bottom */}
-          <div className="pt-8 border-t border-border flex flex-col sm:flex-row justify-between items-center gap-4">
+          <div className="pt-8 border-t border-border flex flex-col sm:flex-row justify-center items-center gap-4">
             <p className="text-sm text-muted-foreground">
               © {new Date().getFullYear()} Khaled Ahmed Salem. All rights reserved.
-            </p>
-            <p className="text-xs text-muted-foreground">
-              Built with React, TypeScript & Tailwind CSS
             </p>
           </div>
         </div>
